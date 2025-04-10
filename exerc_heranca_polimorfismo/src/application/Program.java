@@ -17,13 +17,13 @@ public class Program {
 	public static void main(String[] args) throws ParseException {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		SimpleDateFormat sdf = new SimpleDateFormat();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		List<Product> product = new ArrayList<>();
 		
 		System.out.print("Informe a quantidade de produtos: ");
 		int n = sc.nextInt();
 		
-		for(int i = 1; i < n; i++) {
+		for(int i = 1; i <= n; i++) {
 			System.out.println("Informe os dados do Produto " + i + ": ");
 			System.out.print("O produto é comum, importado ou usado (c/i/u)? ");
 			char typeProduct = sc.next().charAt(0);
@@ -31,7 +31,6 @@ public class Program {
 			sc.nextLine();
 			String name = sc.nextLine();
 			System.out.print("Preço: ");
-			sc.nextLine();
 			double price = sc.nextDouble();
 			if(typeProduct == 'i') {
 				System.out.print("Valor da taxa do amor: ");
@@ -44,6 +43,12 @@ public class Program {
 			}else {
 				product.add(new Product(name, price));
 			}
+		}
+		
+		System.out.println();
+		System.out.println("Etiquetas de Preços");
+		for(Product p : product) {
+			System.out.println(p.priceTag());
 		}
 		
 		sc.close();
